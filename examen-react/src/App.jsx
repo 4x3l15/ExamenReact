@@ -5,8 +5,8 @@ import Footer from './componentes/Footer';
 import './App.css';
 
 function App() {
-const produts = [produts ,setProducts] , useState(produts);
-const category = [category,setCategory], useState(category);
+const [produts ,setProducts] = useState(produts);
+const [category,setCategory]= useState(category);
 
 useEffect (() => { 
   fetch('https://fakestoreapi.com/products')
