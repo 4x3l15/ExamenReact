@@ -5,19 +5,20 @@ import Footer from './componentes/Footer';
 import './App.css';
 
 function App() {
-const [produts ,setProducts] = useState(produts);
-const [category,setCategory]= useState(category);
+const [type,setType]= useState(type);
+const [poster,setPoster]= useState(poster);
+const [tiltle,setTiltle]= useState(tiltle);
 
 useEffect (() => { 
-  fetch('https://fakestoreapi.com/products')
+  fetch('http://www.omdbapi.com/?apikey=[5d1b649d]&')
             .then(res=>res.json())
-            .then(data=>setProducts(data))
-}, [category]);
+            .then(data=>setType(data))
+}, [tiltle]);
   return (
     <div className="App">
-      <Navbar produts ={produts} />
-      <Container  produts={produts} category={category} />
-      <Footer category={category} />
+      <Navbar/>
+      <Container poster={poster} type={type} />
+      <Footer />
     </div>
   );
 }
