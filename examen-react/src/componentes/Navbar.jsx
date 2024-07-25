@@ -1,20 +1,27 @@
-// src/components/Navbar.js
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ setTitle }) => {
+  const [input, setInput] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setTitle(input);
+  };
+
   return (
     <nav className="navbar">
-      <div className="container">
-        <a href="/" className="navbar-brand">Mi Proyecto</a>
-        <ul className="navbar-links">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/about">Acerca de</a></li>
-          <li><a href="/services">Servicios</a></li>
-          <li><a href="/contact">Contacto</a></li>
-          <li><a href="/search">Buscar</a></li>
-        </ul>
-      </div>
+      <div className="navbar-brand">Movie App</div>
+      <form onSubmit={handleSearch} className="navbar-form">
+        <input 
+          type="text" 
+          value={input} 
+          onChange={(e) => setInput(e.target.value)} 
+          placeholder="Enter movie title" 
+          className="navbar-input" 
+        />
+        <button type="submit" className="navbar-button">Search</button>
+      </form>
     </nav>
   );
 };
