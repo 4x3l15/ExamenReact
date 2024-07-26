@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [type, setType] = useState('');
   const [poster, setPoster] = useState('');
-  const [title, setTitle] = useState('Inception');
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     fetch(`http://www.omdbapi.com/?apikey=5d1b649d&t=${title}`)
@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <Navbar setTitle={setTitle} />
-      <Container poster={poster} type={type} />
+      <Container poster={poster} setTitle={setTitle} title={title} />
       <Footer />
     </div>
   );
