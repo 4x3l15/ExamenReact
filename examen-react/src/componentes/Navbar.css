@@ -8,6 +8,8 @@
 }
 
 .navbar-brand {
+  display: flex;
+  margin-left: -65%;
   font-size: 1.5em;
 }
 
@@ -33,4 +35,9 @@
 
 .navbar-button:hover {
   background-color: #777;
+}
+
+.logo-navbar{
+  display: flex;
+  height: 4rem;
 }
