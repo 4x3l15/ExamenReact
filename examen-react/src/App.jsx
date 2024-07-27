@@ -5,29 +5,34 @@ import Footer from './componentes/Footer';
 import './App.css';
 
 function App() {
-  const [type, setType] = useState('');
-  const [poster, setPoster] = useState('');
+  const [movies, setMovies] = useState([]); // Cambia el estado a una lista de películas
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=5d1b649d&t=${title}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.Response === "True") {
-          setType(data.Type);
-          setPoster(data.Poster);
-        } else {
-          setType('');
-          setPoster('');
-        }
-      })
-      .catch(error => console.error('Error fetching data:', error));
+    if (title) {
+      fetch(`http://www.omdbapi.com/?apikey=5d1b649d&t=${title}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.Response === "True") {
+            const newMovie = {
+              year: data.Year,
+              director: data.Director,
+              poster: data.Poster,
+              title: data.Title,
+            };
+            setMovies(prevMovies => [...prevMovies, newMovie]); // Añade la nueva película a la lista existente
+          } else {
+            console.error('Movie not found');
+          }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
   }, [title]);
 
   return (
     <div className="App">
       <Navbar setTitle={setTitle} />
-      <Container poster={poster} setTitle={setTitle} title={title} />
+      <Container movies={movies} /> {/* Pasa la lista de películas a Container */}
       <Footer />
     </div>
   );
